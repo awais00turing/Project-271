@@ -69,7 +69,7 @@ def delete_user_task(
     task_id: int,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
-) -> Any:
+) -> None:
     """Delete a task."""
     task = get_task(db, task_id=task_id, user_id=current_user.id)
     if task is None:
@@ -79,4 +79,4 @@ def delete_user_task(
         )
     
     delete_task(db, task=task)
-    return None
+    # Don't return anything for 204 response

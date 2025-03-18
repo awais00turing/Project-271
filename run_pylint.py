@@ -14,11 +14,11 @@ def run_pylint():
         text=True,
         check=False
     )
-    
+
     print(result.stdout)
     if result.stderr:
         print("Errors:", result.stderr)
-    
+
     return result.returncode
 
 if __name__ == "__main__":

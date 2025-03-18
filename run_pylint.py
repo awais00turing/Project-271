@@ -2,7 +2,6 @@
 """
 Script to run Pylint on the project.
 """
-import os
 import sys
 import subprocess
 

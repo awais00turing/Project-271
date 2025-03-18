@@ -15,7 +15,6 @@ disable=
     missing-function-docstring,
     missing-class-docstring,
     too-few-public-methods,
-    no-self-use,
     invalid-name,
     line-too-long,
     too-many-arguments,
@@ -23,7 +22,7 @@ disable=
     duplicate-code,
     fixme,
     broad-except,
-    no-member,  # Often triggers false positives with SQLAlchemy and Pydantic
+    no-member  # Often triggers false positives with SQLAlchemy and Pydantic
 
 [FORMAT]
 # Maximum line length

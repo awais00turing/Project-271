@@ -5,9 +5,11 @@ from sqlalchemy import pool
 
 from alembic import context
 
-# Import your models metadata
-from app.models import Base
-from app.core.database import SQLALCHEMY_DATABASE_URL
+# Import Base directly from the database module
+from app.core.database import Base, SQLALCHEMY_DATABASE_URL
+# Import models to ensure they're registered with Base.metadata
+import app.models.user
+import app.models.task
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

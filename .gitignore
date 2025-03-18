@@ -46,3 +46,7 @@ nosetests.xml
 coverage.xml
 *.cover
 .hypothesis/
+
+# Pylint
+.pylint.d/
+pylint-report.txt

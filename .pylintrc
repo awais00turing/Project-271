@@ -1,0 +1,58 @@
+[MASTER]
+# Python version to use for features specific to certain Python versions
+py-version = 3.8
+
+# Add files or directories to the blacklist
+ignore=venv
+
+# Use multiple processes to speed up Pylint
+jobs=4
+
+[MESSAGES CONTROL]
+# Disable specific messages or warnings
+disable=
+    missing-module-docstring,
+    missing-function-docstring,
+    missing-class-docstring,
+    too-few-public-methods,
+    no-self-use,
+    invalid-name,
+    line-too-long,
+    too-many-arguments,
+    too-many-instance-attributes,
+    duplicate-code,
+    fixme,
+    broad-except,
+    no-member,  # Often triggers false positives with SQLAlchemy and Pydantic
+
+[FORMAT]
+# Maximum line length
+max-line-length=100
+
+[DESIGN]
+# Maximum number of arguments for function / method
+max-args=8
+
+# Maximum number of attributes for a class
+max-attributes=12
+
+[SIMILARITIES]
+# Minimum lines number of a similarity
+min-similarity-lines=6
+
+# Ignore imports when computing similarities
+ignore-imports=yes
+
+[TYPECHECK]
+# List of members which are set dynamically and missed by Pylint inference system
+generated-members=REQUEST,acl_users,aq_parent,objects,DoesNotExist,id,pk,_meta,status_code,content
+
+# List of class names for which member attributes should not be checked
+ignored-classes=SQLObject,SQLAlchemy,scoped_session,Query,Depends,FastAPI,APIRouter
+
+[VARIABLES]
+# Tells whether unused global variables should be treated as a violation
+allow-global-unused-variables=yes
+
+# List of strings which can identify a callback function by name
+callbacks=cb_,_cb

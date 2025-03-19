@@ -10,6 +10,7 @@ from app.core.security import SECRET_KEY, ALGORITHM
 from app.models.user import User
 from app.crud.user import get_user_by_id
 
+# Update the tokenUrl to match your actual endpoint
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
 
 def get_current_user(
@@ -23,15 +24,22 @@ def get_current_user(
     )
     
     try:
+        # Add some debug logging
+        print(f"Decoding token: {token[:10]}...")
+        
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         user_id: str = payload.get("sub")
         if user_id is None:
             raise credentials_exception
-    except JWTError:
+            
+        print(f"User ID from token: {user_id}")
+    except JWTError as e:
+        print(f"JWT Error: {str(e)}")
         raise credentials_exception
     
     user = get_user_by_id(db, int(user_id))
     if user is None:
+        print(f"User with ID {user_id} not found in database")
         raise credentials_exception
     
     return user

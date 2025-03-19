@@ -89,11 +89,15 @@ def custom_openapi():
         }
     }
     
-    # Apply security to all operations
-    for path in openapi_schema["paths"].values():
-        for operation in path.values():
-            if operation.get("operationId") != "login_for_access_token" and operation.get("operationId") != "register_user":
-                operation["security"] = [{"Bearer Auth": []}]
+    # Apply security to all operations except login and register
+    for path_key, path in openapi_schema["paths"].items():
+        for method, operation in path.items():
+            # Skip login and register endpoints
+            if path_key == "/api/auth/login" or path_key == "/api/auth/register":
+                continue
+            
+            # Add security requirement to all other endpoints
+            operation["security"] = [{"Bearer Auth": []}]
     
     app.openapi_schema = openapi_schema
     return app.openapi_schema

@@ -58,4 +58,7 @@ def login_for_access_token(
         subject=user.id, expires_delta=access_token_expires
     )
     
+    # Add some debug logging
+    print(f"Generated token for user {user.username} (ID: {user.id})")
+    
     return {"access_token": access_token, "token_type": "bearer"}
